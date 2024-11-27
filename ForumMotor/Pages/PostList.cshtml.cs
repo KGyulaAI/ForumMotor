@@ -10,21 +10,22 @@ using ForumMotor.Models;
 
 namespace ForumMotor.Pages
 {
-    public class IndexModel : PageModel
+    public class PostListModel : PageModel
     {
         private readonly ForumMotor.Data.ApplicationDbContext _context;
 
-        public IndexModel(ForumMotor.Data.ApplicationDbContext context)
+        public PostListModel(ForumMotor.Data.ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public IList<Kategoria> Kategoria { get;set; } = default!;
+        public IList<Bejegyzes> Bejegyzes { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            Kategoria = await _context.Kategoriak
-                .Include(k => k.User).ToListAsync();
+            Bejegyzes = await _context.Bejegyzesek
+                .Include(b => b.Topic)
+                .Include(b => b.User).ToListAsync();
         }
     }
 }

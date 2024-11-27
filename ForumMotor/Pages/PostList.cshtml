@@ -1,0 +1,84 @@
+﻿@page
+@model ForumMotor.Pages.PostListModel
+
+@{
+    ViewData["Title"] = "PostList";
+}
+
+<h1>PostList</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Bejegyzes[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bejegyzes[0].Content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bejegyzes[0].CreateDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bejegyzes[0].UpdateDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bejegyzes[0].Likes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bejegyzes[0].Dislikes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bejegyzes[0].Reply)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bejegyzes[0].User)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bejegyzes[0].Topic)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Bejegyzes) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Content)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Likes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dislikes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reply)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Topic.Id)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
